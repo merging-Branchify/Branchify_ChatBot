@@ -14,22 +14,36 @@ with open(json_path, 'r') as file:
 slack_bot_token = data.get('slack_bot_token')
 slack_app_token = data.get('slack_app_token')
 
-
+#슬랙 클라이언트
 slack_client = WebClient(token=slack_bot_token)
 socket_client = SocketModeClient(app_token=slack_app_token, web_client=slack_client)
+
+# 노션 클라이언트
+notion_api_token = data.get('notion_token')
+notion_client = {
+    "base_url": "https://api.notion.com/v1",
+    "token": notion_api_token,
+    "headers": {
+        "Authorization": f"Bearer {notion_api_token}",
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28"
+    }
+}
 
 def process_socket_mode_request(client: SocketModeClient, req: SocketModeRequest):
     try:
         # 이벤트 타입이 `reaction_added`인지 확인
         if req.type == "events_api" and req.payload["event"]["type"] == "reaction_added":
-            
-            handle_reaction_added_event(req.payload["event"], slack_client)
+            # slack과 notion 처리
+            handle_reaction_added_event(req.payload["event"], slack_client, notion_client)
         
+        # 슬랙 이벤트 수신 
         client.send_socket_mode_response(SocketModeResponse(envelope_id=req.envelope_id))
     
     except Exception as e:
         print(f"Error processing request: {e}")
         traceback.print_exc()
+
 
 if __name__ == "__main__":
     try:
