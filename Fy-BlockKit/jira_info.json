@@ -1,0 +1,46 @@
+{
+	"blocks": [
+		{
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "jira_email_input"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Jira 이메일을 입력해주세요",
+				"emoji": true
+			}
+		},
+		{
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "jira_token_input"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Jira API Token을 입력해주세요.",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "입력을 완료한 후 제출 버튼을 눌러주세요."
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "제출",
+					"emoji": true
+				},
+				"value": "submit_form",
+				"action_id": "submit-button",
+				"style": "primary"
+			}
+		}
+	]
+}

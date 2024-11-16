@@ -1,0 +1,19 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "* 왜안왜아아아아아아아 파이가 작동할 채널을 선택해주세요.*"
+			},
+			"accessory": {
+				"type": "conversations_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a channel...",
+					"emoji": true
+				}
+			}
+		}
+	]
+}
