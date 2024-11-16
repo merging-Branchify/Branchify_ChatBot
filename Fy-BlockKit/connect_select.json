@@ -1,0 +1,38 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*연동할 App을 선택해주세요.*"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an app...",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Notion",
+							"emoji": true
+						},
+						"value": "notion"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Jira",
+							"emoji": true
+						},
+						"value": "jira"
+					}
+				],
+				"action_id": "app_select_action"
+			}
+		}
+	]
+}

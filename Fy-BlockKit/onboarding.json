@@ -1,0 +1,54 @@
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "안녕하세요👋 \n저는 파이에요. 제가 슬랙 채널에서 멋진 기능?을 수행하기 위해서는 몇 가지 단계가 필요해요😗"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*1️⃣ 지라와 연결해요: `/jira_connect`* 명령어를 통해서 지라 프로젝트와 파이를 연결해주세요."
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*1️⃣ 노션과 연결해요: `/notion_connect`* 명령어를 통해서 노션 데이터베이스와 파이를 연결해주세요."
+			}
+		},
+		{
+			"type": "image",
+			"title": {
+				"type": "plain_text",
+				"text": "image1",
+				"emoji": true
+			},
+			"image_url": "https://api.slack.com/img/blocks/bkb_template_images/onboardingComplex.jpg",
+			"alt_text": "image1"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "➕ 지라 혹은 노션과 연결후 파이가 작동할 채널을 선택해주세요."
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "mrkdwn",
+					"text": "👀 주절주절`/주절주절\n❓주절주절 `/주절주절` 주절주절"
+				}
+			]
+		}
+	]
+}
