@@ -8,7 +8,7 @@
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Jira 이메일을 입력해주세요",
+				"text": "📩 Jira 이메일을 입력해주세요.",
 				"emoji": true
 			}
 		},
@@ -20,7 +20,7 @@
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Jira API Token을 입력해주세요.",
+				"text": "🍄 Jira API Token을 입력해주세요.",
 				"emoji": true
 			}
 		},

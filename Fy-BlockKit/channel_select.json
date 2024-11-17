@@ -4,16 +4,34 @@
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "* 왜안왜아아아아아아아 파이가 작동할 채널을 선택해주세요.*"
+				"text": "*연동할 App을 선택해주세요.*"
 			},
 			"accessory": {
-				"type": "conversations_select",
+				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
-					"text": "Select a channel...",
+					"text": "Select an app...",
 					"emoji": true
-				}
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Notion",
+							"emoji": true
+						},
+						"value": "notion"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Jira",
+							"emoji": true
+						},
+						"value": "jira"
+					}
+				],
+				"action_id": "app_select_action"
 			}
 		}
 	]
-}
