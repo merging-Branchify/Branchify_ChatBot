@@ -3,6 +3,7 @@ from slack_sdk import WebClient
 from requests.auth import HTTPBasicAuth
 import json
 from slack_helper import post_message, get_message_text
+from parse_message import parsing_message
 
 
 # JSON 파일에서 설정 불러오기
@@ -49,10 +50,14 @@ def create_jira_issue(summary):
 
 def handle_reaction_added_event(event_data, slack_client, notion_client):
     reaction = event_data['reaction']
+
     if reaction in ["ticket", "티켓"]:
         process_jira_ticket(event_data, slack_client)
     elif reaction in ["page_facing_up", "글씨가_쓰여진_페이지"]:
         process_notion_page(event_data, slack_client, notion_client)
+    elif reaction == 'dizzy':
+        process_slack_message(event_data, slack_client)
+
     else:
         print(f"Unsupported reaction: {reaction}")
 
@@ -113,3 +118,36 @@ def create_notion_page(title):
     else:
         print("Failed to create page:", response.status_code, response.text)
         return None
+
+
+
+def process_slack_message(event_data, slack_client):
+    """
+    Slack에서 받은 이모지 반응에 따라 메시지를 파싱하여 댓글로 포스트
+    """
+    reaction = event_data['reaction']
+    channel_id = event_data['item']['channel']
+    message_ts = event_data['item']['ts']
+
+    # 'dizzy' 이모지에 대해 처리
+    if reaction == "dizzy":
+        print("디지 이모지 감지")
+        # Slack에서 메시지 가져오기
+        message_text = get_message_text(slack_client, channel_id, message_ts)
+        if not message_text:
+            print("메시지를 찾을 수 없습니다.")
+            return
+        
+        # 메시지 파싱
+        parsed_result = parsing_message(message_text)
+
+        # 딕셔너리를 문자열(JSON 형식)로 변환
+        formatted_result = json.dumps(parsed_result, ensure_ascii=False, indent=2)
+
+        # 결과를 댓글로 포스트
+        post_message(
+            slack_client,
+            channel=channel_id,
+            thread_ts=message_ts,
+            text= formatted_result
+        )
