@@ -6,6 +6,10 @@ from slack_sdk.socket_mode import SocketModeClient
 from slack_sdk.socket_mode.request import SocketModeRequest
 from slack_sdk.socket_mode.response import SocketModeResponse
 from event_handler import handle_reaction_added_event
+from summarize import send_summary
+
+file_path = '/Users/yujuyoung/Desktop/BRANCHIFY_BOT/branchify_data/database_content.csv'
+
 
 json_path = '/Users/yujuyoung/Desktop/BRANCHIFY_BOT/Fy_bot/applications_info.json'  
 with open(json_path, 'r') as file:
@@ -13,6 +17,7 @@ with open(json_path, 'r') as file:
 
 slack_bot_token = data.get('slack_bot_token')
 slack_app_token = data.get('slack_app_token')
+slack_channel = data.get('slack_channel_id')
 
 #슬랙 클라이언트
 slack_client = WebClient(token=slack_bot_token)
@@ -51,6 +56,7 @@ if __name__ == "__main__":
         socket_client.socket_mode_request_listeners.append(process_socket_mode_request)
         socket_client.connect()
         print("Connected to Slack")
+        send_summary(file_path, slack_client, slack_channel)
 
         # 무한루프
         while True:
