@@ -1,10 +1,18 @@
 {
 	"blocks": [
 		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "🚀 Branchify 사용 가이드",
+				"emoji": true
+			}
+		},
+		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "안녕하세요!👋 저는 *파이* 🥧예요.\n슬랙에서 더 똑똑하고 효율적인 경험을 만들어 드릴 준비가 되었어요! 🚀\n\n먼저, 제가 멋진 기능들을 제공하기 위해 아래 단계를 완료해 주세요:"
+				"text": "*안녕하세요! 저는* *'파이'* *입니다.* 🖐️\n\nBranchify는 Slack과 SaaS를 통합하여 팀의 소통과 협업을 혁신하는 도구에요. 여러분의 프로젝트에서 생산성과 효율성을 극대화하는 새로운 차원의 경험을 제공합니다. 🤗"
 			}
 		},
 		{
@@ -14,20 +22,39 @@
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": " *연결할 앱을 선택해주세요.*"
+				"text": "✨ *Branchify 주요 기능*"
 			}
 		},
 		{
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": " *Jira와 Notion의 정보를 입력해주세요.*"
+				"text": "1️⃣ *Jira와 Notion과 연동*\n\n`/jira_fy` 및 `/notion_fy` 명령어를 사용해 파이와 연동하세요. \n\n✔️ *Jira*: 프로젝트 관리에 필요한 모든 정보를 Slack에서 바로 확인해요.\n✔️ *Notion*: 팀의 아이디어와 작업 내용이 담겨있는 데이터베이스를 Slack에서 한눈에 파악해요."
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "2️⃣ *AI 기반 실시간 변경사항 요약*\n\n파이는 Jira와 Notion 등의 협업 툴에서 발생하는 모든 중요한 변경사항을 분석하고 요약하여 Slack으로 전달합니다. \n\n _*예시*: \"[BE] [기능 명세서 & 구현 기능 정리]\"_"
 			}
 		},
 		{
 			"type": "image",
-			"image_url": "https://api.slack.com/img/blocks/bkb_template_images/onboardingComplex.jpg",
-			"alt_text": "Jira와 Notion 정보를 입력하는 예제 이미지"
+			"image_url": "https://branchify-fe.vercel.app/assets/feature-1-Cxv6CcS4.png",
+			"alt_text": "Branchify 기능 스크린샷"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "3️⃣ *이모지 반응으로 Jira 티켓 생성🎫*\n\n팀원의 Slack 메시지에 이모지로 반응하면, Jira에서 바로 이슈 티켓을 생성해요. 이제 번거로운 단계를 줄이고 빠르게 작업을 시작하세요!"
+			}
+		},
+		{
+			"type": "image",
+			"image_url": "https://branchify-fe.vercel.app/assets/feature-2-nLOST_km.png",
+			"alt_text": "Branchify 기능 스크린샷"
 		},
 		{
 			"type": "divider"
@@ -36,7 +63,7 @@
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "3️⃣ *모든 준비가 완료되면, 제가 바로 작업을 시작할게요!* 😊\n\n💡 궁금한 점이 있거나 도움이 필요하면 언제든지 `help`라고 입력해보세요."
+				"text": "🔔 *알림받을 채널 선택*\nㅜJira 혹은 Notion과 연결 후, 파이가 작동할 Slack 채널을 선택해주세요. 채널 설정을 완료하면 파이 봇이 실시간으로 알림을 전달합니다."
 			}
 		},
 		{
@@ -46,24 +73,7 @@
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "🥯 *지라와 연결해요:* `/jira_connect` 명령어를 통해서 지라 프로젝트와 파이를 연결해주세요."
-			}
-		},
-		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": "🥯 *노션과 연결해요:* `/notion_connect` 명령어를 통해서 노션 데이터베이스와 파이를 연결해주세요."
-			}
-		},
-		{
-			"type": "divider"
-		},
-		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": " 지라 혹은 노션과 연결 후 파이가 작동할 채널을 선택해주세요."
+				"text": "💡 *Branchify로 팀의 잠재력을 극대화하세요.*\n\nSlack 안에서 모든 도구와 작업이 하나로 통합되는 경험을 지금 바로 시작하세요. <https://https://branchify-fe.vercel.app/| 🔗랜딩페이지 바로 가기>"
 			}
 		},
 		{
@@ -74,12 +84,9 @@
 			"elements": [
 				{
 					"type": "mrkdwn",
-					"text": "👀 `/help`를 입력하면 언제든 도움말을 볼 수 있어요!\n❓ 더 자세한 내용은 `/faq`를 입력해보세요."
+					"text": "👀 언제든지 `/help` 명령어로 도움을 받을 수 있어요.\n❓ 더 궁금한 점이 있다면 `/faq`를 입력해보세요."
 				}
 			]
-		},
-		{
-			"type": "divider"
 		}
 	]
 }
