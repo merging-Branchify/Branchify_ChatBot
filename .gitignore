@@ -2,3 +2,9 @@
 /old
 /Fy-bot/test.py
 /Fy-bot/application_info.json
+__pycache__/
+*.jsonl
+*.jsonFy_bot/__pycache__/
+*.pyc
+Fy_bot/*.json
+Fy_bot/*.jsonl
