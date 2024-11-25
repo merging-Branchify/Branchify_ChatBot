@@ -16,7 +16,7 @@ def summarize_data_to_mrkdwn(file_path):
     data['properties.날짜.start'] = pd.to_datetime(data['properties.날짜.start'], errors='coerce')
     data['properties.날짜.end'] = pd.to_datetime(data['properties.날짜.end'], errors='coerce')
 
-    today = datetime(2024, 11, 18).date()
+    today = datetime(2024, 11, 22).date()
     yesterday = today - timedelta(days=1)
     
     created_pages = data[data['created_time'].dt.date == yesterday]

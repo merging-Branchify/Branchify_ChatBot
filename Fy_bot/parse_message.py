@@ -1,13 +1,11 @@
-#from konlpy.tag import Okt
+import re
 from soynlp.tokenizer import LTokenizer
 
-import re
-
-from soynlp.tokenizer import LTokenizer
-import re
 
 def parsing_message(message):
     """
+    Slack 메시지를 분석하여 날짜, 담당자, 내용을 추출합니다.
+    
     Args:
         message (str): Slack 메시지 텍스트.
         
@@ -15,15 +13,13 @@ def parsing_message(message):
         dict: 메시지에서 추출된 정보를 담은 딕셔너리.
     """
     # 형태소 분석기 로드
-    okt =  LTokenizer()
+    okt = LTokenizer()
     
     # 담당자 추출 (정규 표현식 기반)
     person_pattern = r"@(\w+)"
     person_match = re.search(person_pattern, message)
     if person_match:
-        person = person_match.group(1)
-        if person.endswith("님"):
-            person = person[:-1]
+        person = person_match.group(1).replace("님", "")  # "님" 제거
     else:
         person = "담당자 미지정"
     
@@ -35,33 +31,21 @@ def parsing_message(message):
     # 텍스트에서 담당자와 날짜 제거
     clean_message = re.sub(person_pattern, "", message)  # @이름 제거
     clean_message = re.sub(date_pattern, "", clean_message)  # 날짜 제거
-    
-    # 형태소 분석 수행
-    tokens = okt.tokenize(clean_message)  # LTokenizer에서 토큰화 사용
-    
-    # 제목 생성 (특정 키워드 기반)
-    title_keywords = ["수정", "개발", "검토", "확인", "작업", "완료"]
-    title = None
-    for word in title_keywords:
-        if word in tokens:
-            title = word + " 관련 작업"
-            break
-    if not title:
-        title = "제목 미지정"
-    
+    clean_message = re.sub(r"까지", "", clean_message)  # 불필요한 문구 제거
+
+    clean_message = clean_message.strip()
+
     # 내용 생성
-    content = clean_message.strip()
+    content = clean_message if clean_message else "내용 미지정"
 
     # 결과 정리
     result = {
-        "제목": title,
+        "제목": "제목 미지정",  # 제목은 사용자가 지정하도록 비워둠
         "담당자": person,
         "날짜": dates if dates else ["날짜 미지정"],
-        "내용": content,
+        "내용": content.strip()
     }
     
-    #message = dict_to_slack_table(result)
-
     return result
 
 
@@ -106,10 +90,10 @@ def dict_to_slack_table(data):
 
 message = " @파이님, 랜딩페이지 QA와 수정 작업을 진행해 주세요. 마감 기한은 2024년 11월 22일 오후 6시까지입니다. 랜딩페이지의 모바일과 데스크탑 환경에서 디자인 오류나 기능 이상 여부를 확인한 후, 발견된 문제를 노션의 QA 데이터베이스에 정리해 공유해 주세요. 특히 주요 오류인 화면 깨짐이나 링크 비활성화 문제는 11월 21일까지 개발팀과 논의해 수정 완료해 주시기 바랍니다. 감사합니다!"
 
-# parsed_result = parsing_message(message)
+parsed_result = parsing_message(message)
 
-# # Slack 표 형식으로 변환
-# slack_table = dict_to_slack_table(parsed_result)
+# Slack 표 형식으로 변환
+slack_table = dict_to_slack_table(parsed_result)
 
 # # 출력 결과
 # print(slack_table)

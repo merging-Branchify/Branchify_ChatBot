@@ -5,7 +5,6 @@ import json
 from slack_helper import post_message, get_message_text
 from parse_message import parsing_message
 
-
 # JSON 파일에서 설정 불러오기
 json_path = '/Users/yujuyoung/Desktop/BRANCHIFY_BOT/Fy_bot/applications_info.json'
 with open(json_path, 'r') as file:
@@ -141,8 +140,15 @@ def process_slack_message(event_data, slack_client):
         # 메시지 파싱
         parsed_result = parsing_message(message_text)
 
-        # 딕셔너리를 문자열(JSON 형식)로 변환
-        formatted_result = json.dumps(parsed_result, ensure_ascii=False, indent=2)
+        # 딕셔너리를 문자열(JSON 형식)로 변환하고 백틱으로 감싸기
+        formatted_result = (
+            "```\n"  # 백틱 시작
+            f"👀 제목: {parsed_result.get('제목', '제목 미지정')}\n"
+            f"🤓 담당자: {parsed_result.get('담당자', '담당자 미지정')}\n"
+            f"📅 날짜: {', '.join(parsed_result.get('날짜', ['날짜 미지정']))}\n"
+            f"📄 내용: {parsed_result.get('내용', '내용 미지정')}\n"
+            "```"  # 백틱 종료
+        )
 
         # 결과를 댓글로 포스트
         post_message(
