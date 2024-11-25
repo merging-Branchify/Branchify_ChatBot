@@ -8,3 +8,5 @@ __pycache__/
 *.pyc
 Fy_bot/*.json
 Fy_bot/*.jsonl
+Fy_bot/test.py
+branchify_data/
