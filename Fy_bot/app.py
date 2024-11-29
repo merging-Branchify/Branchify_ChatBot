@@ -56,7 +56,7 @@ if __name__ == "__main__":
         socket_client.socket_mode_request_listeners.append(process_socket_mode_request)
         socket_client.connect()
         print("Connected to Slack")
-        #send_summary(file_path, slack_client, slack_channel)
+        # send_summary(file_path, slack_client, slack_channel)
 
         # 무한루프
         while True:
